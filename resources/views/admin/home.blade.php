@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Welcome</div>
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,12 +14,7 @@
                         </div>
                     @endif
 
-                    Welcome to National Medical Centre
-
-                    </br>
-                    </br>
-
-                    Read more <a href = "{{route('about')}}">about us</a>
+                    You are logged in as an Admin
                 </div>
             </div>
         </div>
