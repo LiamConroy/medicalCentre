@@ -6,6 +6,10 @@ use App\Http\Controllers\Patient\VisitController as PatientVisitController;
 use App\Http\Controllers\Admin\VisitController as AdminVisitController;
 use App\Http\Controllers\Doctor\VisitController as DoctorVisitController;
 
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Doctor\HomeController as DoctorHomeController;
+use App\Http\Controllers\Patient\HomeController as PatientHomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,10 +46,10 @@ Route::get('/doctor/visits/{id}', [DoctorVisitController::class, 'show'])->name(
 Route::get('/admin/visits', [AdminVisitController::class, 'index'])->name('admin.visits.index');
 Route::get('/admin/visits/create', [AdminVisitController::class, 'create'])->name('admin.visits.create');
 Route::get('/admin/visits/{id}', [AdminVisitController::class, 'show'])->name('admin.visits.show');
-Route::get('/admin/visits/store', [AdminVisitController::class, 'store'])->name('admin.visits.store');
+Route::post('/admin/visits/store', [AdminVisitController::class, 'store'])->name('admin.visits.store');
 Route::get('/admin/visits/{id}/edit', [AdminVisitController::class, 'edit'])->name('admin.visits.edit');
-Route::get('/admin/visits/{id}', [AdminVisitController::class, 'update'])->name('admin.visits.update');
-Route::get('/admin/visits/{id}', [AdminVisitController::class, 'destroy'])->name('admin.visits.destroy');
+Route::put('/admin/visits/{id}', [AdminVisitController::class, 'update'])->name('admin.visits.update');
+Route::delete('/admin/visits/{id}', [AdminVisitController::class, 'destroy'])->name('admin.visits.destroy');
 
 
 

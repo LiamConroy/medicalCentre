@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Doctor;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Visit;
 
 class VisitController extends Controller
 {
@@ -41,7 +42,7 @@ class VisitController extends Controller
      */
     public function create()
     {
-        return view("admin.visit.create");
+        return view("admin.visits.create");
     }
 
     /**
@@ -53,10 +54,10 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date_of' => 'required|date|max:191',
-            'time_of' => 'required|time|max:191',
+            'date_of' => 'required|max:10',
+            'time_of' => 'required|max:191',
             'duration' => 'required|integer|max:191',
-            'cost' => 'required|decimal|max:191'
+            'cost' => 'required|min:0.01|max:191'
         ]);  
         
         $visit = new Visit();
@@ -67,7 +68,7 @@ class VisitController extends Controller
         $visit->save();
 
         
-        return redirect()->route('admin.visit.index');
+        return redirect()->route('admin.visits.index');
     }
 
     /**
@@ -111,10 +112,10 @@ class VisitController extends Controller
 
         
         $request->validate([
-            'date_of' => 'required|date|max:191',
-            'time_of' => 'required|time|max:191',
+            'date_of' => 'required|max:10',
+            'time_of' => 'required|max:191',
             'duration' => 'required|integer|max:191',
-            'cost' => 'required|decimal|max:191'
+            'cost' => 'required|min:0.01|max:191'
         ]);  
         
         
@@ -125,7 +126,7 @@ class VisitController extends Controller
         $visit->save();
 
         
-        return redirect()->route('admin.visit.index'); 
+        return redirect()->route('admin.visits.index'); 
     }
 
     /**
@@ -139,6 +140,6 @@ class VisitController extends Controller
         $visit = Visit::findOrFail($id); 
         $visit->delete();
 
-        return redirect()->route('admin.visits.index')
+        return redirect()->route('admin.visits.index');
     }
 }
