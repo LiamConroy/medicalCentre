@@ -14,7 +14,15 @@
                         </div>
                     @endif
 
-                    You are logged in as an Admin
+                    <div>
+                       <table>
+                        <thread>
+                            <th class = "ml-5"><a href = "{{route('admin.doctors.index')}}">Doctor</a></th>
+                            <th class = "ml-5"><a href = "{{route('admin.patients.index')}}">Patients</th>
+                            <th class = "ml-5"><a href = "{{route('admin.visits.index')}}">Visits</th>
+                        </thread>
+                       </table> 
+                    </div>
                 </div>
             </div>
         </div>
