@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visit;
+use App\Models\Doctor;
 
 class VisitController extends Controller
 {
@@ -42,7 +43,12 @@ class VisitController extends Controller
      */
     public function create()
     {
-        return view("admin.visits.create");
+
+        $doctors = Doctor::all();
+
+       return view ('admin.visits.create', [
+            'doctors' => $doctors
+        ]);  
     }
 
     /**

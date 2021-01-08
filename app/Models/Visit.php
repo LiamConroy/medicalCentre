@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Visit extends Model
 {
     use HasFactory;
+
+    public function doctor()
+    {
+       return $this->belongsTo('App\Models\Doctor');
+
+    }
 }

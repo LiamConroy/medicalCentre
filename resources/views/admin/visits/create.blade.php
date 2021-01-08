@@ -26,14 +26,14 @@
                     <input type="file" class="form-control" name="cover" id="cover" />
                 </div> --}}
 
-                {{-- <div class="form-group">
-                    <label for="publisher">Duration</label>
+                <div class="form-group">
+                    <label for="publisher">Doctor</label>
                     <select name='publisher_id'>
-                      @foreach ($publishers as $publisher)
-                        <option value="{{ $publisher->id }}" {{ (old('publisher_id') == $publisher->id) ? "selected" : "" }}>{{ $publisher->name }}</option>
+                      @foreach ($doctors as $doctor)
+                        <option value="{{ $doctor->id }}" {{ (old('doctor_id') == $doctor->id) ? "selected" : "" }}>{{ $doctor->name }}</option>
                       @endforeach
                     </select>
-                </div> --}}
+                </div> 
                 <div class="form-group">
                     <label for="date">Date</label>
                     <input type="date" class="form-control" name="date_of" id="date_of" value="{{ old('date_of') }}" />

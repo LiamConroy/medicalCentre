@@ -28,11 +28,12 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = Doctor::all();
+        $doctors = Doctor::all();
 
         return view ('admin.doctors.index', [
-            'doctors' => $doctor
-        ]);   
+            'doctors' => $doctors
+        ]);  
+
     }
 
     /**
