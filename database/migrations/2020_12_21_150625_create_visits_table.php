@@ -15,6 +15,8 @@ class CreateVisitsTable extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
+            $table->string('doctor');
+            $table->string('patient');
             $table->date('date_of');
             $table->time('time_of');
             $table->integer('duration');

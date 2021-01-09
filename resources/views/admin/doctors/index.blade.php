@@ -29,10 +29,10 @@
                         <tbody>
                         @foreach ($doctors as $doctor)
                             <tr data-id="{{$doctor->id}}">
-                            <td>{{$doctor->name}}</td>
-                            <td>{{$doctor->postal_address}}</td>
-                            <td>{{$doctor->phone_number}}</td>
-                            <td>{{$doctor->email}}</td>
+                            <td>{{$doctor->user->name}}</td>
+                            <td>{{$doctor->user->postal_address}}</td>
+                            <td>{{$doctor->user->phone_number}}</td>
+                            <td>{{$doctor->user->email}}</td>
                             <td>{{$doctor->start_date}}</td>
                             <td>
                                 <a href="{{ route('admin.doctors.show', $doctor->id) }}" class ="btn btn-primary">View</a>

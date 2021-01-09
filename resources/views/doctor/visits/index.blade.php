@@ -9,17 +9,19 @@
 
             <div class = "card">
                 <div class = "card-header">
-                Hi {{ Auth::user()->name}}
+                Visits
+                <a href="{{ route('doctor.visits.create') }}" class ="btn btn-primary float-right">Add</a>
                 </div>
 
                 <div class = "card-body">
                 @if (count($visits) === 0)
-                    <p>You have no visits!</p>
+                    <p>There no visits!</p>
                 @else
 
-                    <table id="table-books" class = "table table-hover">
+                    <table id="table-visits" class = "table table-hover">
                         <thread>
                             <th>Doctor</th>
+                            <th>Patient</th>
                             <th>Date</th>
                             <th>Time</th>
                             <th>Duration</th>
@@ -29,14 +31,21 @@
                         @foreach ($visits as $visit)
                             <tr data-id="{{$visit->id}}">
                             <td>{{$visit->doctor->user->name}}</td>
+                            <td>{{$visit->patient->user->name}}</td>
                             <td>{{$visit->date_of}}</td>
                             <td>{{$visit->time_of}}</td>
                             <td>{{$visit->duration}}</td>
                             <td>{{$visit->cost}}</td>
                             <td>
-                                <a href="{{ route('patient.visits.show', $visit->id) }}" class ="btn btn-primary">View</a>
+                                <a href="{{ route('doctor.visits.show', $visit->id) }}" class ="btn btn-primary">View</a>
+                                <a href="{{ route('doctor.visits.edit', $visit->id) }}" class ="btn btn-primary">Edit</a>
+                                <form style="display:inline-block" method="POST" action="{{ route('doctor.visits.destroy', $visit->id) }}">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="form-control btn btn-danger">Delete</button>
+                            </form>
                             </td>
-                        {{-- </tr> --}}
+                        </tr>
                 @endforeach
                  </tbody>
                 </table>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
+use App\Models\User;
+use App\Models\Role;
 
 class DoctorController extends Controller
 {
@@ -59,16 +61,26 @@ class DoctorController extends Controller
             'postal_address' => 'required|string|max:191',
             'phone_number' => 'required|max:191',
             'email' => 'required|string|max:191',
+            'password' => 'required|string|max:191',
             'start_date' => 'required'
         ]);  
         
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->postal_address = $request->input('postal_address');
+        $user->phone_number = $request->input('phone_number');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->save();    
+
+        $user->roles()->attach(Role::where('name', 'doctor')->first());
+
         $doctor = new Doctor();
-        $doctor->name = $request->input('name');
-        $doctor->postal_address = $request->input('postal_address');
-        $doctor->phone_number = $request->input('phone_number');
-        $doctor->email = $request->input('email');
         $doctor->start_date = $request->input('start_date');
+        $doctor->user_id = $user->id;
         $doctor->save();
+
+      
 
         
         return redirect()->route('admin.doctors.index');
@@ -119,19 +131,25 @@ class DoctorController extends Controller
             'postal_address' => 'required|string|max:191',
             'phone_number' => 'required|max:191',
             'email' => 'required|string|max:191',
+            'password' => 'required|string|max:191',
             'start_date' => 'required'
         ]);  
         
-        
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->postal_address = $request->input('postal_address');
+        $user->phone_number = $request->input('phone_number');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->save();    
+
         $doctor = new Doctor();
-        $doctor->name = $request->input('name');
-        $doctor->postal_address = $request->input('postal_address');
-        $doctor->phone_number = $request->input('phone_number');
-        $doctor->email = $request->input('email');
         $doctor->start_date = $request->input('start_date');
+        $doctor->user_id = $user->id;
         $doctor->save();
 
-        
+        $user->roles()->attach(Role::where('name', 'doctor')->first());
+
         return redirect()->route('admin.doctors.index'); 
     }
 

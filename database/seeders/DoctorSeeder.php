@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Doctor;
+use App\Models\User;
+use Hash;
 
 class DoctorSeeder extends Seeder
 {
@@ -15,21 +17,36 @@ class DoctorSeeder extends Seeder
     public function run()
     {
         
-        $doctor = new Doctor();
-        $doctor->name = "John Tavish";
-        $doctor->postal_address = "Fake road, fake county";
-        $doctor->phone_number = "1111111111";
-        $doctor->email = "doctorsemail@email.com";
-        $doctor->start_date = "2008-09-23";
         
-        $doctor->save();
+
+        $user = new User();
+        //$user->id();
+        $user->name = "John Tavish";
+        $user->postal_address = "Fake road, fake county";
+        $user->phone_number = "1111111111";
+        $user->email = "doctorsemail@email.com";
+        $user->password = Hash::make('secret');
+        $user->save();
 
         $doctor = new Doctor();
-        $doctor->name = "Stacey Blackburn";
-        $doctor->postal_address = "Fake road2, fake county2";
-        $doctor->phone_number = "2222222222";
-        $doctor->email = "doctorsemail2@email.com";
+        $doctor->user_id = $user->id;
+        $doctor->start_date = "2008-09-23";
+        $doctor->save();
+
+
+        $user = new User();
+        //$user->id();
+        $user->name = "Stacey Blackburn";
+        $user->postal_address = "Fake road2, fake county2";
+        $user->phone_number = "2222222222";
+        $user->email = "doctorsemail2@email.com";
+        $user->password = Hash::make('secret');
+        $user->save();
+
+        $doctor = new Doctor();
+        $doctor->user_id = $user->id;
         $doctor->start_date = "2007-09-22";
         $doctor->save();
+        
     }
 }

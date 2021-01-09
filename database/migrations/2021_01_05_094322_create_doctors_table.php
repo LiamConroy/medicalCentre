@@ -15,12 +15,15 @@ class CreateDoctorsTable extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('postal_address');
-            $table->string('phone_number');
-            $table->string('email');
+            //$table->string('name');
+          //  $table->string('postal_address');
+            //$table->string('phone_number');
+            //$table->string('email');
             $table->date('start_date');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

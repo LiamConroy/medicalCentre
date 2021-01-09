@@ -60,17 +60,24 @@ class PatientController extends Controller
             'email' => 'required|string|max:191',
             'health_insurance' => 'required|bool|max:191',
             'company_name' => 'required|string|max:191',
-            'policy_num' => 'required|string|max:191'
+            'policy_num' => 'required|string|max:191',
+            'password' => 'required|string|max:191'
         ]);  
         
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->postal_address = $request->input('postal_address');
+        $user->phone_number = $request->input('phone_number');
+        $user->email = $request->input('email');
+        $user->save();
+
+        $user->roles()->attach(Role::where('name', 'patient')->first());
+
         $patient = new Patient();
-        $patient->name = $request->input('name');
-        $patient->postal_address = $request->input('postal_address');
-        $patient->phone_number = $request->input('phone_number');
-        $patient->email = $request->input('email');
         $patient->health_insurance = $request->input('health_insurance');
         $patient->company_name = $request->input('company_name');
         $patient->policy_num = $request->input('policy_num');
+        $patient->user_id = $user->id;
         $patient->save();
 
         
@@ -124,7 +131,8 @@ class PatientController extends Controller
             'email' => 'required|string|max:191',
             'health_insurance' => 'required|bool|max:191',
             'company_name' => 'required|string|max:191',
-            'policy_num' => 'required|string|max:191'
+            'policy_num' => 'required|string|max:191',
+            'password' => 'required|string|max:191'
         ]);  
         
         

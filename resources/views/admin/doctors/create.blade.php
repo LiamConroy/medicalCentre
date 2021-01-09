@@ -51,10 +51,16 @@
                     <label for="email">Email</label>
                     <input type="text" class="form-control" name="email" id="email" value="{{ old('email') }}" />
                 </div>
+                
 
                 <div class="form-group">
                     <label for="start_date">Start Date</label>
                     <input type="date" class="form-control" name="start_date" id="start_date" value="{{ old('start_date') }}" />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Password</label>
+                    <input type="text" class="form-control" name="password" id="password" value="{{ old('password') }}" />
                 </div>
                 <div>
                   <a href="{{ route('admin.doctors.index') }}" class="btn btn-default">Cancel</a>

@@ -13,6 +13,14 @@
                       <table class="table table-hover">
                         <tbody>
                             <tr>
+                              <td>Doctor</td>
+                              <td>{{ $visit->doctor->user->name}}</td>
+                            </tr>
+                             <tr>
+                              <td>Patient</td>
+                              <td>{{ $visit->patient->user->name}}</td>
+                            </tr>
+                             <tr>
                               <td>Date</td>
                               <td>{{ $visit->date_of }}</td>
                             </tr>

@@ -31,10 +31,10 @@
                         <tbody>
                         @foreach ($patients as $patient)
                             <tr data-id="{{$patient->id}}">
-                            <td>{{$patient->name}}</td>
-                            <td>{{$patient->postal_address}}</td>
-                            <td>{{$patient->phone_number}}</td>
-                            <td>{{$patient->email}}</td>
+                            <td>{{$patient->user->name}}</td>
+                            <td>{{$patient->user->postal_address}}</td>
+                            <td>{{$patient->user->phone_number}}</td>
+                            <td>{{$patient->user->email}}</td>
                             <td>{{$patient->health_insurance}}</td>
                             <td>{{$patient->company_name}}</td>
                             <td>{{$patient->policy_num}}</td>

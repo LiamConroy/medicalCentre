@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDoctorIdToVisitsTable extends Migration
+class AddPatientIdToVisitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,9 @@ class AddDoctorIdToVisitsTable extends Migration
     public function up()
     {
         Schema::table('visits', function (Blueprint $table) {
-            $table->dropColumn('doctor');
-            $table->bigInteger('doctor_id')->unsigned();
-            $table->foreign('doctor_id')->references('id')->on('doctors')->onUpdate('cascade')->onDelete('restrict');
-            
+            $table->dropColumn('patient');
+            $table->bigInteger('patient_id')->unsigned();
+            $table->foreign('patient_id')->references('id')->on('patients')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
@@ -29,9 +28,9 @@ class AddDoctorIdToVisitsTable extends Migration
     public function down()
     {
         Schema::table('visits', function (Blueprint $table) {
-            $table->dropForeign(['doctor_id']);
-            $table->dropColumn('doctor_id');
-            $table->string('doctor');
+            $table->dropForeign(['patient_id']);
+            $table->dropColumn('patient_id');
+            $table->string('patient');
         });
     }
 }

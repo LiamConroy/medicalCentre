@@ -44,6 +44,12 @@ Route::get('/patient/visits/{id}', [PatientVisitController::class, 'show'])->nam
 
 Route::get('/doctor/visits/', [DoctorVisitController::class, 'index'])->name('doctor.visits.index');
 Route::get('/doctor/visits/{id}', [DoctorVisitController::class, 'show'])->name('doctor.visits.show');
+Route::get('/doctor/visits/create', [DoctorVisitController::class, 'create'])->name('doctor.visits.create');
+Route::post('/doctor/visits/store', [DoctorVisitController::class, 'store'])->name('doctor.visits.store');
+Route::get('/doctor/visits/{id}/edit', [DoctorVisitController::class, 'edit'])->name('doctor.visits.edit');
+Route::put('/doctor/visits/{id}', [DoctorVisitController::class, 'update'])->name('doctor.visits.update');
+Route::delete('/doctor/visits/{id}', [DoctorVisitController::class, 'destroy'])->name('doctor.visits.destroy');
+
 
 //Admin visits
 Route::get('/admin/visits', [AdminVisitController::class, 'index'])->name('admin.visits.index');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Visit;
 use App\Models\Doctor;
+use App\Models\Patient;
 
 class VisitController extends Controller
 {
@@ -45,9 +46,11 @@ class VisitController extends Controller
     {
 
         $doctors = Doctor::all();
+        $patients = Patient::all();
 
        return view ('admin.visits.create', [
-            'doctors' => $doctors
+            'doctors' => $doctors,
+            'patients' => $patients
         ]);  
     }
 
@@ -60,13 +63,17 @@ class VisitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date_of' => 'required|max:10',
+            'doctor_id' => 'required',
+            'patient_id' => 'required',
+            'date_of' => 'required',
             'time_of' => 'required|max:191',
             'duration' => 'required|integer|max:191',
             'cost' => 'required|min:0.01|max:191'
         ]);  
         
         $visit = new Visit();
+        $visit->doctor_id = $request->input('doctor_id');
+        $visit->patient_id = $request->input('patient_id');
         $visit->date_of = $request->input('date_of');
         $visit->time_of = $request->input('time_of');
         $visit->duration = $request->input('duration');
@@ -98,9 +105,13 @@ class VisitController extends Controller
     public function edit($id)
     {
         $visits = Visit::all();
+        $doctors = Doctor::all();
+        $patients = Patient::all();
 
         return view ('admin.visits.edit', [
-            'visits' => $visits
+            'visits' => $visits,
+            'doctors' => $doctors,
+            'patients' => $patients
         ]);   
     }
 
@@ -118,13 +129,16 @@ class VisitController extends Controller
 
         
         $request->validate([
-            'date_of' => 'required|max:10',
+            'doctor_id' => 'required',
+            'patient_id' => 'required',
+            'date_of' => 'required',
             'time_of' => 'required|max:191',
             'duration' => 'required|integer|max:191',
             'cost' => 'required|min:0.01|max:191'
         ]);  
         
-        
+        $visit->doctor_id = $request->input('doctor_id');
+        $visit->patient_id = $request->input('patient_id');
         $visit->date_of = $request->input('date_of');
         $visit->time_of = $request->input('time_of');
         $visit->duration = $request->input('duration');

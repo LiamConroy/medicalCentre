@@ -27,17 +27,28 @@
                 </div> --}}
 
                 <div class="form-group">
-                    <label for="publisher">Doctor</label>
-                    <select name='publisher_id'>
+                    <label for="doctor">Doctor</label>
+                    <select name='doctor_id'>
                       @foreach ($doctors as $doctor)
-                        <option value="{{ $doctor->id }}" {{ (old('doctor_id') == $doctor->id) ? "selected" : "" }}>{{ $doctor->name }}</option>
+                        <option value="{{ $doctor->id }}" {{ (old('doctor_id') == $doctor->id) ? "selected" : "" }}>{{ $doctor->user->name }}</option>
                       @endforeach
                     </select>
                 </div> 
+
+                 <div class="form-group">
+                    <label for="patient">Patient</label>
+                    <select name='patient_id'>
+                      @foreach ($patients as $patient)
+                        <option value="{{ $patient->id }}" {{ (old('patient_id') == $patient->id) ? "selected" : "" }}>{{ $patient->user->name }}</option>
+                      @endforeach
+                    </select>
+                </div> 
+                
                 <div class="form-group">
                     <label for="date">Date</label>
                     <input type="date" class="form-control" name="date_of" id="date_of" value="{{ old('date_of') }}" />
                 </div>
+
                 <div class="form-group">
                     <label for="time">Time</label>
                     <input type="time" class="form-control" name="time_of" id="time_of" value="{{ old('time_of') }}" />

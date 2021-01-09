@@ -15,11 +15,13 @@
 
                 <div class = "card-body">
                 @if (count($visits) === 0)
-                    <p>There are no visits!</p>
+                    <p>There bruh no visits!</p>
                 @else
 
-                    <table id="table-books" class = "table table-hover">
+                    <table id="table-visits" class = "table table-hover">
                         <thread>
+                            <th>Doctor</th>
+                            <th>Patient</th>
                             <th>Date</th>
                             <th>Time</th>
                             <th>Duration</th>
@@ -28,8 +30,10 @@
                         <tbody>
                         @foreach ($visits as $visit)
                             <tr data-id="{{$visit->id}}">
-                            <td>{{$visit->date}}</td>
-                            <td>{{$visit->time}}</td>
+                            <td>{{$visit->doctor->user->name}}</td>
+                            <td>{{$visit->patient->user->name}}</td>
+                            <td>{{$visit->date_of}}</td>
+                            <td>{{$visit->time_of}}</td>
                             <td>{{$visit->duration}}</td>
                             <td>{{$visit->cost}}</td>
                             <td>

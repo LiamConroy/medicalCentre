@@ -20,7 +20,7 @@
              </div>
          @endif
          @foreach ($visits as $visit)
-        <form method="POST" action="{{ route('admin.visits.update',  $visit->id) }}" >
+        <form method="POST" action="{{ route('doctor.visits.update',  $visit->id) }}" >
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="PUT">
         @endforeach
@@ -66,7 +66,7 @@
                     <input type="text" class="form-control" name="cost" id="cost" value="{{ old('cost', $visit->cost) }}" />
                 </div>
                 <div>
-                  <a href="{{ route('admin.visits.index') }}" class="btn btn-default">Cancel</a>
+                  <a href="{{ route('doctor.visits.index') }}" class="btn btn-default">Cancel</a>
                   <button type="submit" class="btn btn-primary pull-right">Submit</button>
                 </div>
               </form>
