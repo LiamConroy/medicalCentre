@@ -7,6 +7,26 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Project Setup
+
+-Once the project is downloaded, place it within your MyLaravelProjects folder.
+-Then go into your homestead.yaml file and add the following: - "map: medical.centre
+                                                                to: /home/vagrant/WAF/MyLaravelProjects/medicalCentre/public"
+-Under the database section add "medical_centre".
+-Once this is done go to your hosts file and add the database in there.
+-Next go into your .env and change APP_NAME to "medicalCentre"
+-Still in the .env file change DB_DATABASE to medical_centre also change DB_PASSWORD to "secret" and DB_USERNAME to "homestead"
+
+Within the homstead enviroment run the following: 
+-"composer install"
+-"npm install"
+
+Once this is done you can seed and migrate the database with the following
+-"php artisan migrat --see "
+
+As a note you may have to create the database "medical_centre" within phpMyAdmin if the migrations do not work
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
